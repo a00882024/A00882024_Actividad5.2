@@ -1,13 +1,9 @@
 """Compute total sales from a product catalogue and a sales record."""
 
-import json
 import sys
 
-
-def load_json(filepath):
-    """Load and return parsed JSON from a file."""
-    with open(filepath, "r", encoding="utf-8") as f:
-        return json.load(f)
+from src.product_repository import ProductRepository
+from src.sales_repository import SalesRepository
 
 
 def main():
@@ -19,11 +15,11 @@ def main():
     product_file = sys.argv[1]
     sales_file = sys.argv[2]
 
-    product_catalogue = load_json(product_file)
-    sales_records = load_json(sales_file)
+    products = ProductRepository.from_json(product_file)
+    sales = SalesRepository.from_json(sales_file)
 
-    print(f"Products loaded: {len(product_catalogue)}")
-    print(f"Sales loaded: {len(sales_records)}")
+    print(f"Products loaded: {len(products)}")
+    print(f"Sales loaded: {len(sales)}")
 
 
 if __name__ == "__main__":
