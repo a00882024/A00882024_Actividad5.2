@@ -22,11 +22,14 @@ def main():
     print(f"Products loaded: {len(products)}")
     print(f"Sales loaded: {len(sales)}")
 
-    result = SalesComputer(products, sales).compute()
+    computer = SalesComputer(products, sales)
+    result = computer.compute()
 
     for title, total in result["per_product"].items():
         print(f"  {title}: ${total:,.2f}")
     print(f"Grand total: ${result['grand_total']:,.2f}")
+
+    computer.save_to_file(result, "results/SalesResults.txt")
 
 
 if __name__ == "__main__":

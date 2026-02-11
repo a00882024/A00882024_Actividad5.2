@@ -66,3 +66,14 @@ class TestSalesComputer:
         result = SalesComputer(products, two_sales).compute()
         assert result["per_product"] == {}
         assert result["grand_total"] == 0
+
+    def test_save_to_file(self, two_products, two_sales, tmp_path):
+        computer = SalesComputer(two_products, two_sales)
+        result = computer.compute()
+        out = tmp_path / "SalesResults.txt"
+        computer.save_to_file(result, str(out))
+
+        lines = out.read_text().splitlines()
+        assert lines[0] == "  Apple: $4.50"
+        assert lines[1] == "  Bread: $4.00"
+        assert lines[2] == "Grand total: $8.50"
