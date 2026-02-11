@@ -71,9 +71,10 @@ class TestSalesComputer:
         computer = SalesComputer(two_products, two_sales)
         result = computer.compute()
         out = tmp_path / "SalesResults.txt"
-        computer.save_to_file(result, str(out))
+        computer.save_to_file(result, str(out), 0.123456)
 
         lines = out.read_text().splitlines()
         assert lines[0] == "  Apple: $4.50"
         assert lines[1] == "  Bread: $4.00"
         assert lines[2] == "Grand total: $8.50"
+        assert lines[3] == "Execution time: 0.123456 seconds"

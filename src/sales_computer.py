@@ -35,9 +35,11 @@ class SalesComputer:
             "grand_total": sum(per_product.values()),
         }
 
-    def save_to_file(self, result: dict, filepath: str) -> None:
-        """Write per-product totals and grand total to *filepath*."""
+    def save_to_file(self, result: dict, filepath: str,
+                     elapsed: float) -> None:
+        """Write per-product totals, grand total, and execution time."""
         with open(filepath, "w", encoding="utf-8") as fh:
             for title, total in result["per_product"].items():
                 fh.write(f"  {title}: ${total:,.2f}\n")
             fh.write(f"Grand total: ${result['grand_total']:,.2f}\n")
+            fh.write(f"Execution time: {elapsed:.6f} seconds\n")

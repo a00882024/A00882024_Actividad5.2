@@ -1,6 +1,7 @@
 """Compute total sales from a product catalogue and a sales record."""
 
 import sys
+import time
 
 from src.product_repository import ProductRepository
 from src.sales_repository import SalesRepository
@@ -23,13 +24,17 @@ def main():
     print(f"Sales loaded: {len(sales)}")
 
     computer = SalesComputer(products, sales)
+
+    start = time.perf_counter()
     result = computer.compute()
+    elapsed = time.perf_counter() - start
 
     for title, total in result["per_product"].items():
         print(f"  {title}: ${total:,.2f}")
     print(f"Grand total: ${result['grand_total']:,.2f}")
+    print(f"Execution time: {elapsed:.6f} seconds")
 
-    computer.save_to_file(result, "results/SalesResults.txt")
+    computer.save_to_file(result, "results/SalesResults.txt", elapsed)
 
 
 if __name__ == "__main__":
