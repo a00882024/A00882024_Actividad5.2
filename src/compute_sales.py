@@ -4,6 +4,7 @@ import sys
 
 from src.product_repository import ProductRepository
 from src.sales_repository import SalesRepository
+from src.sales_computer import SalesComputer
 
 
 def main():
@@ -20,6 +21,12 @@ def main():
 
     print(f"Products loaded: {len(products)}")
     print(f"Sales loaded: {len(sales)}")
+
+    result = SalesComputer(products, sales).compute()
+
+    for title, total in result["per_product"].items():
+        print(f"  {title}: ${total:,.2f}")
+    print(f"Grand total: ${result['grand_total']:,.2f}")
 
 
 if __name__ == "__main__":
