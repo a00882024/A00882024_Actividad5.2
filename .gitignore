@@ -1,0 +1,13 @@
+venv/
+__pycache__/
+*.pyc
+.flake8
+*.egg-info/
+dist/
+build/
+results/
+
+# OS file explorer caches
+.DS_Store
+Thumbs.db
+Desktop.ini
