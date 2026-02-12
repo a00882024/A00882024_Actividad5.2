@@ -7,7 +7,18 @@ class ProductRepository:
     """Stores products indexed by title for fast lookup."""
 
     def __init__(self, product_list):
-        self._products = {p["title"]: p for p in product_list}
+        self._products = {}
+        for i, p in enumerate(product_list):
+            if "title" not in p:
+                print(f'Skipping product at index {i} — missing "title"')
+                continue
+            if "price" not in p:
+                print(f'Skipping product at index {i} — missing "price"')
+                continue
+            if not isinstance(p["price"], (int, float)):
+                print(f'Skipping product at index {i} — "price" not numeric')
+                continue
+            self._products[p["title"]] = p
 
     def get(self, title):
         """Return the product dict for *title*, or None if not found."""

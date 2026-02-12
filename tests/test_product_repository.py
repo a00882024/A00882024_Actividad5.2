@@ -46,3 +46,39 @@ class TestProductRepository:
         repo = ProductRepository.from_json(sample_product_file)
         assert len(repo) == 3
         assert repo.get("Apple")["price"] == 1.50
+
+    def test_skip_product_missing_title(self, capsys):
+        products = [
+            {"price": 1.50},
+            {"title": "Bread", "price": 2.00},
+        ]
+        repo = ProductRepository(products)
+        assert len(repo) == 1
+        assert repo.get("Bread") is not None
+        output = capsys.readouterr().out
+        assert 'Skipping product at index 0' in output
+        assert 'missing "title"' in output
+
+    def test_skip_product_missing_price(self, capsys):
+        products = [
+            {"title": "Apple"},
+            {"title": "Bread", "price": 2.00},
+        ]
+        repo = ProductRepository(products)
+        assert len(repo) == 1
+        assert repo.get("Apple") is None
+        output = capsys.readouterr().out
+        assert 'Skipping product at index 0' in output
+        assert 'missing "price"' in output
+
+    def test_skip_product_non_numeric_price(self, capsys):
+        products = [
+            {"title": "Apple", "price": "cheap"},
+            {"title": "Bread", "price": 2.00},
+        ]
+        repo = ProductRepository(products)
+        assert len(repo) == 1
+        assert repo.get("Apple") is None
+        output = capsys.readouterr().out
+        assert 'Skipping product at index 0' in output
+        assert '"price" not numeric' in output

@@ -24,7 +24,11 @@ class SalesComputer:
             product = self._products.get(sale.Product)
             if product is None:
                 continue
-            revenue = product["price"] * sale.Quantity
+            try:
+                revenue = product["price"] * sale.Quantity
+            except TypeError as exc:
+                print(f"Warning: Skipping sale {sale.Product!r} — {exc}")
+                continue
             per_product[sale.Product] = (
                 per_product.get(sale.Product, 0)
                 + revenue

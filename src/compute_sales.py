@@ -1,5 +1,6 @@
 """Compute total sales from a product catalogue and a sales record."""
 
+import json
 import sys
 import time
 
@@ -17,8 +18,17 @@ def main():
     product_file = sys.argv[1]
     sales_file = sys.argv[2]
 
-    products = ProductRepository.from_json(product_file)
-    sales = SalesRepository.from_json(sales_file)
+    try:
+        products = ProductRepository.from_json(product_file)
+    except (FileNotFoundError, json.JSONDecodeError) as exc:
+        print(f"Error loading product file: {exc}")
+        sys.exit(1)
+
+    try:
+        sales = SalesRepository.from_json(sales_file)
+    except (FileNotFoundError, json.JSONDecodeError) as exc:
+        print(f"Error loading sales file: {exc}")
+        sys.exit(1)
 
     print(f"Products loaded: {len(products)}")
     print(f"Sales loaded: {len(sales)}")

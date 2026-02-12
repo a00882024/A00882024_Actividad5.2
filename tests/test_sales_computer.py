@@ -67,6 +67,22 @@ class TestSalesComputer:
         assert result["per_product"] == {}
         assert result["grand_total"] == 0
 
+    def test_type_error_in_compute_is_skipped(self, capsys):
+        products = ProductRepository([
+            {"title": "Apple", "price": 1.50},
+        ])
+        sales = SalesRepository([
+            {"SALE_ID": 1, "SALE_Date": "01/01/24", "Product": "Apple",
+             "Quantity": 3},
+        ])
+        # Corrupt the stored price to trigger a TypeError during multiply
+        products._products["Apple"]["price"] = None
+        result = SalesComputer(products, sales).compute()
+        assert "Apple" not in result["per_product"]
+        assert result["grand_total"] == 0
+        output = capsys.readouterr().out
+        assert "Skipping sale" in output
+
     def test_save_to_file(self, two_products, two_sales, tmp_path):
         computer = SalesComputer(two_products, two_sales)
         result = computer.compute()

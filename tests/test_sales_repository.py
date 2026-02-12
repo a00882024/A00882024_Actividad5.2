@@ -55,3 +55,40 @@ class TestSalesRepository:
         assert len(repo) == 2
         first = next(iter(repo))
         assert first.Product == "Apple"
+
+    def test_skip_sale_missing_product(self, capsys):
+        sales = [
+            {"SALE_ID": 1, "SALE_Date": "01/01/24", "Quantity": 3},
+            {"SALE_ID": 2, "SALE_Date": "01/01/24", "Product": "Bread",
+             "Quantity": 2},
+        ]
+        repo = SalesRepository(sales)
+        assert len(repo) == 1
+        output = capsys.readouterr().out
+        assert 'Skipping sale at index 0' in output
+        assert 'missing "Product"' in output
+
+    def test_skip_sale_missing_quantity(self, capsys):
+        sales = [
+            {"SALE_ID": 1, "SALE_Date": "01/01/24", "Product": "Apple"},
+            {"SALE_ID": 2, "SALE_Date": "01/01/24", "Product": "Bread",
+             "Quantity": 2},
+        ]
+        repo = SalesRepository(sales)
+        assert len(repo) == 1
+        output = capsys.readouterr().out
+        assert 'Skipping sale at index 0' in output
+        assert 'missing "Quantity"' in output
+
+    def test_skip_sale_non_numeric_quantity(self, capsys):
+        sales = [
+            {"SALE_ID": 1, "SALE_Date": "01/01/24", "Product": "Apple",
+             "Quantity": "many"},
+            {"SALE_ID": 2, "SALE_Date": "01/01/24", "Product": "Bread",
+             "Quantity": 2},
+        ]
+        repo = SalesRepository(sales)
+        assert len(repo) == 1
+        output = capsys.readouterr().out
+        assert 'Skipping sale at index 0' in output
+        assert '"Quantity" not numeric' in output

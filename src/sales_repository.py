@@ -30,7 +30,18 @@ class SalesRepository:
     """Iterable collection of SaleRecord objects."""
 
     def __init__(self, sale_list):
-        self._records = [SaleRecord(s) for s in sale_list]
+        self._records = []
+        for i, s in enumerate(sale_list):
+            if "Product" not in s:
+                print(f'Skipping sale at index {i} — missing "Product"')
+                continue
+            if "Quantity" not in s:
+                print(f'Skipping sale at index {i} — missing "Quantity"')
+                continue
+            if not isinstance(s["Quantity"], (int, float)):
+                print(f'Skipping sale at index {i} — "Quantity" not numeric')
+                continue
+            self._records.append(SaleRecord(s))
 
     def __iter__(self):
         return iter(self._records)
