@@ -1,0 +1,21 @@
+  Rustic breakfast: $63.96
+  Sandwich with salad: $112.40
+  Raw legums: $359.31
+  Fresh stawberry: $142.95
+  Pears juice: $58.47
+  Green smoothie: $388.96
+  Cuban sandwiche: $203.50
+  Hazelnut in black ceramic bowl: $191.45
+  Tomatoes: $52.06
+  Plums: $76.72
+  Fresh blueberries: $147.07
+  Corn: $257.45
+  French fries: $54.96
+  Ground beef meat burger: $46.92
+  Cherry: $57.40
+  Homemade bread: $104.88
+  Smoothie with chia seeds: $75.78
+  Peaches on branch: $51.24
+  Pesto with basil: $36.38
+Grand total: $2,481.86
+Execution time: 0.000022 seconds

@@ -1,4 +1,4 @@
   Apple: $4.50
   Bread: $4.00
 Grand total: $8.50
-Execution time: 0.000005 seconds
+Execution time: 0.000004 seconds
