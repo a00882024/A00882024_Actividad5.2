@@ -55,6 +55,21 @@ pytest
 flake8 src/ tests/
 ```
 
+```bash
+pylint src/ tests/
+```
+
+## Code Quality Evidence
+
+**Pytest — 25/25 tests passing**
+![Pytest Results](results/pytest.png)
+
+**Flake8 — zero warnings**
+![Flake8 Results](results/flake8.png)
+
+**Pylint — 10.00/10**
+![Pylint Results](results/pylint.png)
+
 ## Results
 
 Grand total comparison between the expected values (`data/Results.txt`) and our computed output (`results/`):
