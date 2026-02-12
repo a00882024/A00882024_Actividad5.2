@@ -18,7 +18,7 @@
 1. Clone the repository:
 
 ```bash
-git clone <repository-url>
+git clone git@github.com:a00882024/A00882024_Actividad5.2.git
 cd A00882024_Actividad5.2
 ```
 
