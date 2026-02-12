@@ -1,4 +1,6 @@
 """Tests for ProductRepository."""
+# pylint: disable=missing-function-docstring,missing-class-docstring
+# pylint: disable=redefined-outer-name
 
 import json
 import pytest

@@ -11,18 +11,22 @@ class SaleRecord:
 
     @property
     def SALE_ID(self):
+        """Return the sale identifier."""
         return self._data["SALE_ID"]
 
     @property
     def SALE_Date(self):
+        """Return the sale date."""
         return self._data["SALE_Date"]
 
     @property
     def Product(self):
+        """Return the product name."""
         return self._data["Product"]
 
     @property
     def Quantity(self):
+        """Return the quantity sold."""
         return self._data["Quantity"]
 
 

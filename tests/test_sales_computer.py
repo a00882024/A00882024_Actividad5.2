@@ -1,4 +1,8 @@
 """Tests for SalesComputer."""
+# pylint: disable=missing-function-docstring,missing-class-docstring
+# pylint: disable=redefined-outer-name
+# pylint: disable=use-implicit-booleaness-not-comparison
+# pylint: disable=protected-access
 
 import pytest
 

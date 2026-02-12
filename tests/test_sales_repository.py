@@ -1,4 +1,7 @@
 """Tests for SaleRecord and SalesRepository."""
+# pylint: disable=missing-function-docstring,missing-class-docstring
+# pylint: disable=redefined-outer-name,too-few-public-methods
+# pylint: disable=use-implicit-booleaness-not-comparison
 
 import json
 import pytest

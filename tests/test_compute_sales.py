@@ -1,8 +1,11 @@
 """Tests for compute_sales module."""
+# pylint: disable=missing-function-docstring,missing-class-docstring
+# pylint: disable=redefined-outer-name
 
 import json
-import pytest
 from unittest.mock import patch
+
+import pytest
 
 from src.compute_sales import main
 

@@ -10,6 +10,7 @@ from src.sales_computer import SalesComputer
 
 
 def main():
+    """Parse CLI arguments, compute sales totals, and display results."""
     if len(sys.argv) != 3:
         print("Usage: python -m src.compute_sales <product_list.json>"
               " <sales.json>")
