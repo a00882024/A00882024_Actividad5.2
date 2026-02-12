@@ -1,0 +1,11 @@
+[MASTER]
+# Use multiple processes to speed up pylint
+jobs=1
+
+[MESSAGES CONTROL]
+# SaleRecord properties match the JSON keys, not snake_case
+# C0103: invalid-name (allowed for data-mapping properties)
+disable=C0103
+
+[FORMAT]
+max-line-length=100
